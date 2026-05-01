@@ -1,0 +1,147 @@
+#   SQL Project (Data Transformer)
+
+## Overview
+
+This project demonstrates advanced SQL concepts using a sample **Customers**, **Orders**, and **Employees** database.
+
+It focuses on real-world data analysis tasks such as joins, subqueries, window functions, and data transformation.
+
+---
+
+## Tables Used
+
+### Customers  
+
+* customer_id (Primary Key)
+* first_name
+* last_name
+* email
+* registration_date
+
+### Orders
+
+* order_id (Primary Key)
+* customer_id (Foreign Key)
+* order_date
+* total_ammount
+
+### Employees
+
+* emp_id (Primary Key)
+* first_name
+* last_name
+* department
+* hire_date
+* salary
+
+---
+
+SQL Concepts Covered
+
+ 1. Joins
+
+* INNER JOIN → Matching records only
+* LEFT JOIN → All customers + orders (if any)
+* RIGHT JOIN → All orders + customers (if any)
+* FULL OUTER JOIN → Using UNION
+
+---
+
+ 2. Subqueries
+
+* Customers with orders above average amount
+* Employees with salary above average
+
+---
+
+ 3. Date Functions
+
+* Extract year and month
+* Calculate difference in days
+* Format dates (`DD-MMM-YYYY`)
+
+---
+
+ 4. String Functions
+
+* CONCAT → Full name
+* REPLACE → Modify text
+* UPPER / LOWER → Case conversion
+* TRIM → Remove extra spaces
+
+---
+
+ 5. Window Functions
+
+* Running total using `SUM() OVER()`
+* Ranking using `RANK()`
+
+---
+
+6. Conditional Logic (CASE)
+
+* Discount calculation
+* Salary categorization
+
+---
+
+ Sample Queries
+
+Running Total
+
+```sql
+SELECT order_id, total_ammount,
+       SUM(total_ammount) OVER (ORDER BY order_id) AS running_total
+FROM Orders;
+```
+
+---
+
+Ranking Orders
+
+```sql
+SELECT order_id, total_ammount,
+       RANK() OVER (ORDER BY total_ammount DESC) AS rank_order
+FROM Orders;
+```
+
+---
+
+ Discount Logic
+
+```sql
+SELECT order_id, total_ammount,
+CASE
+    WHEN total_ammount > 1000 THEN '10% Discount'
+    WHEN total_ammount > 500 THEN '5% Discount'
+    ELSE 'No Discount'
+END AS discount
+FROM Orders;
+```
+
+---
+
+ Salary Categorization
+
+```sql
+SELECT emp_id, first_name, salary,
+CASE
+    WHEN salary > 70000 THEN 'High'
+    WHEN salary >= 50000 THEN 'Medium'
+    ELSE 'Low'
+END AS salary_category
+FROM Employees;
+```
+
+---
+
+Skills Gained
+
+* Writing complex SQL queries
+* Understanding joins and relationships
+* Using window functions for analytics
+* Applying business logic with CASE
+* Data cleaning and formatting
+
+
+
