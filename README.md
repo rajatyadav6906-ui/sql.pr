@@ -1,4 +1,4 @@
-## E-commerce Management System (SQL Project)
+## E-commerce Management System (SQL Project) assignment PR
  # Project Overview
 
 This project implements an E-commerce Management System using SQL.
